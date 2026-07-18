@@ -18,6 +18,9 @@ try {
   const context = await browser.newContext()
   const page = await context.newPage()
   await page.goto(url, { waitUntil: 'networkidle', timeout: 30000 })
+  // Let entrance animations and fade-ins finish, or axe measures
+  // mid-transition colors and reports false contrast failures.
+  await page.waitForTimeout(2000)
 
   const results = await new AxeBuilder({ page })
     .withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa'])
