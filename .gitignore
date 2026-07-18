@@ -1,0 +1,15 @@
+# dependencies
+node_modules/
+
+# generated audit reports
+reports/
+
+# local env — secrets live here, never committed
+.env
+.env*.local
+
+# Terraform (from M1 onward) — state and vars can contain secrets
+*.tfstate
+*.tfstate.*
+.terraform/
+*.tfvars
