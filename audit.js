@@ -15,7 +15,8 @@ const SEVERITY_ORDER = ['critical', 'serious', 'moderate', 'minor']
 
 const browser = await chromium.launch()
 try {
-  const page = await browser.newPage()
+  const context = await browser.newContext()
+  const page = await context.newPage()
   await page.goto(url, { waitUntil: 'networkidle', timeout: 30000 })
 
   const results = await new AxeBuilder({ page })
