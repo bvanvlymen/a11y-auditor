@@ -1,9 +1,6 @@
 # dependencies
 node_modules/
 
-# generated audit reports
-reports/
-
 # local env — secrets live here, never committed
 .env
 .env*.local

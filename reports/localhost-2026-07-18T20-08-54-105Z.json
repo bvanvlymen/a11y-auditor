@@ -1,0 +1,399 @@
+{
+  "url": "http://localhost:3000",
+  "timestamp": "2026-07-18T20:08:54.106Z",
+  "scannedViewports": 8,
+  "summary": {
+    "passedRules": 23,
+    "needsReview": 0,
+    "violations": 1
+  },
+  "violations": [
+    {
+      "id": "color-contrast",
+      "impact": "serious",
+      "tags": [
+        "cat.color",
+        "wcag2aa",
+        "wcag143",
+        "TTv5",
+        "TT13.c",
+        "EN-301-549",
+        "EN-9.1.4.3",
+        "ACT",
+        "RGAAv4",
+        "RGAA-3.2.1"
+      ],
+      "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+      "help": "Elements must meet minimum color contrast ratio thresholds",
+      "helpUrl": "https://dequeuniversity.com/rules/axe/4.12/color-contrast?application=playwright",
+      "nodes": [
+        {
+          "any": [
+            {
+              "id": "color-contrast",
+              "data": {
+                "fgColor": "#ffffff",
+                "bgColor": "#3b82f6",
+                "contrastRatio": 3.67,
+                "fontSize": "13.5pt (18px)",
+                "fontWeight": "normal",
+                "messageKey": null,
+                "expectedContrastRatio": "4.5:1"
+              },
+              "relatedNodes": [
+                {
+                  "html": "<div class=\"flex items-center gap-4 p-6 bg-blue-500 text-white rounded-lg shadow-lg fadeIn animate\">",
+                  "target": [
+                    ".bg-blue-500"
+                  ]
+                }
+              ],
+              "impact": "serious",
+              "message": "Element has insufficient color contrast of 3.67 (foreground color: #ffffff, background color: #3b82f6, font size: 13.5pt (18px), font weight: normal). Expected contrast ratio of 4.5:1"
+            }
+          ],
+          "all": [],
+          "none": [],
+          "impact": "serious",
+          "html": "<p class=\"text-lg font-medium\"><span class=\"font-bold\">Cloud Infrastructure &amp; Deployment –</span> Deploying production apps on AWS (EC2, SES, Elastic IP) with Docker, Nginx, and hardened security groups.</p>",
+          "target": [
+            ".bg-blue-500 > .font-medium.text-lg"
+          ],
+          "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.67 (foreground color: #ffffff, background color: #3b82f6, font size: 13.5pt (18px), font weight: normal). Expected contrast ratio of 4.5:1"
+        },
+        {
+          "any": [
+            {
+              "id": "color-contrast",
+              "data": {
+                "fgColor": "#ffffff",
+                "bgColor": "#3b82f6",
+                "contrastRatio": 3.67,
+                "fontSize": "13.5pt (18px)",
+                "fontWeight": "bold",
+                "messageKey": null,
+                "expectedContrastRatio": "4.5:1"
+              },
+              "relatedNodes": [
+                {
+                  "html": "<div class=\"flex items-center gap-4 p-6 bg-blue-500 text-white rounded-lg shadow-lg fadeIn animate\">",
+                  "target": [
+                    ".bg-blue-500"
+                  ]
+                }
+              ],
+              "impact": "serious",
+              "message": "Element has insufficient color contrast of 3.67 (foreground color: #ffffff, background color: #3b82f6, font size: 13.5pt (18px), font weight: bold). Expected contrast ratio of 4.5:1"
+            }
+          ],
+          "all": [],
+          "none": [],
+          "impact": "serious",
+          "html": "<span class=\"font-bold\">Cloud Infrastructure &amp; Deployment –</span>",
+          "target": [
+            ".bg-blue-500 > .font-medium.text-lg > span"
+          ],
+          "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.67 (foreground color: #ffffff, background color: #3b82f6, font size: 13.5pt (18px), font weight: bold). Expected contrast ratio of 4.5:1"
+        },
+        {
+          "any": [
+            {
+              "id": "color-contrast",
+              "data": {
+                "fgColor": "#ffffff",
+                "bgColor": "#22c55e",
+                "contrastRatio": 2.27,
+                "fontSize": "13.5pt (18px)",
+                "fontWeight": "normal",
+                "messageKey": null,
+                "expectedContrastRatio": "4.5:1"
+              },
+              "relatedNodes": [
+                {
+                  "html": "<div class=\"flex items-center gap-4 p-6 bg-green-500 text-white rounded-lg shadow-lg fadeIn animate\">",
+                  "target": [
+                    ".bg-green-500"
+                  ]
+                }
+              ],
+              "impact": "serious",
+              "message": "Element has insufficient color contrast of 2.27 (foreground color: #ffffff, background color: #22c55e, font size: 13.5pt (18px), font weight: normal). Expected contrast ratio of 4.5:1"
+            }
+          ],
+          "all": [],
+          "none": [],
+          "impact": "serious",
+          "html": "<p class=\"text-lg font-medium\"><span class=\"font-bold \">Full-Stack Engineering –</span> End-to-end products with React, Next.js, Node.js, and MongoDB — from API design to responsive, accessible UIs.</p>",
+          "target": [
+            ".bg-green-500 > .font-medium.text-lg"
+          ],
+          "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.27 (foreground color: #ffffff, background color: #22c55e, font size: 13.5pt (18px), font weight: normal). Expected contrast ratio of 4.5:1"
+        },
+        {
+          "any": [
+            {
+              "id": "color-contrast",
+              "data": {
+                "fgColor": "#ffffff",
+                "bgColor": "#22c55e",
+                "contrastRatio": 2.27,
+                "fontSize": "13.5pt (18px)",
+                "fontWeight": "bold",
+                "messageKey": null,
+                "expectedContrastRatio": "4.5:1"
+              },
+              "relatedNodes": [
+                {
+                  "html": "<div class=\"flex items-center gap-4 p-6 bg-green-500 text-white rounded-lg shadow-lg fadeIn animate\">",
+                  "target": [
+                    ".bg-green-500"
+                  ]
+                }
+              ],
+              "impact": "serious",
+              "message": "Element has insufficient color contrast of 2.27 (foreground color: #ffffff, background color: #22c55e, font size: 13.5pt (18px), font weight: bold). Expected contrast ratio of 4.5:1"
+            }
+          ],
+          "all": [],
+          "none": [],
+          "impact": "serious",
+          "html": "<span class=\"font-bold \">Full-Stack Engineering –</span>",
+          "target": [
+            ".bg-green-500 > .font-medium.text-lg > span"
+          ],
+          "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.27 (foreground color: #ffffff, background color: #22c55e, font size: 13.5pt (18px), font weight: bold). Expected contrast ratio of 4.5:1"
+        },
+        {
+          "any": [
+            {
+              "id": "color-contrast",
+              "data": {
+                "fgColor": "#ffffff",
+                "bgColor": "#a855f7",
+                "contrastRatio": 3.95,
+                "fontSize": "13.5pt (18px)",
+                "fontWeight": "normal",
+                "messageKey": null,
+                "expectedContrastRatio": "4.5:1"
+              },
+              "relatedNodes": [
+                {
+                  "html": "<div class=\"flex items-center gap-4 p-6 bg-purple-500 text-white rounded-lg shadow-lg fadeIn animate\">",
+                  "target": [
+                    ".bg-purple-500"
+                  ]
+                }
+              ],
+              "impact": "serious",
+              "message": "Element has insufficient color contrast of 3.95 (foreground color: #ffffff, background color: #a855f7, font size: 13.5pt (18px), font weight: normal). Expected contrast ratio of 4.5:1"
+            }
+          ],
+          "all": [],
+          "none": [],
+          "impact": "serious",
+          "html": "<p class=\"text-lg font-medium\"><span class=\"font-bold \">DevOps &amp; Automation –</span> CI/CD pipelines with GitHub Actions, Docker Compose, and Bash/SSH tooling for repeatable, hands-off deployments.</p>",
+          "target": [
+            ".bg-purple-500 > .font-medium.text-lg"
+          ],
+          "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.95 (foreground color: #ffffff, background color: #a855f7, font size: 13.5pt (18px), font weight: normal). Expected contrast ratio of 4.5:1"
+        },
+        {
+          "any": [
+            {
+              "id": "color-contrast",
+              "data": {
+                "fgColor": "#ffffff",
+                "bgColor": "#a855f7",
+                "contrastRatio": 3.95,
+                "fontSize": "13.5pt (18px)",
+                "fontWeight": "bold",
+                "messageKey": null,
+                "expectedContrastRatio": "4.5:1"
+              },
+              "relatedNodes": [
+                {
+                  "html": "<div class=\"flex items-center gap-4 p-6 bg-purple-500 text-white rounded-lg shadow-lg fadeIn animate\">",
+                  "target": [
+                    ".bg-purple-500"
+                  ]
+                }
+              ],
+              "impact": "serious",
+              "message": "Element has insufficient color contrast of 3.95 (foreground color: #ffffff, background color: #a855f7, font size: 13.5pt (18px), font weight: bold). Expected contrast ratio of 4.5:1"
+            }
+          ],
+          "all": [],
+          "none": [],
+          "impact": "serious",
+          "html": "<span class=\"font-bold \">DevOps &amp; Automation –</span>",
+          "target": [
+            ".bg-purple-500 > .font-medium.text-lg > span"
+          ],
+          "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.95 (foreground color: #ffffff, background color: #a855f7, font size: 13.5pt (18px), font weight: bold). Expected contrast ratio of 4.5:1"
+        },
+        {
+          "any": [
+            {
+              "id": "color-contrast",
+              "data": {
+                "fgColor": "#ffffff",
+                "bgColor": "#ef4444",
+                "contrastRatio": 3.76,
+                "fontSize": "13.5pt (18px)",
+                "fontWeight": "normal",
+                "messageKey": null,
+                "expectedContrastRatio": "4.5:1"
+              },
+              "relatedNodes": [
+                {
+                  "html": "<div class=\"flex items-center gap-4 p-6 bg-red-500 text-white rounded-lg shadow-lg fadeIn animate\">",
+                  "target": [
+                    ".bg-red-500"
+                  ]
+                }
+              ],
+              "impact": "serious",
+              "message": "Element has insufficient color contrast of 3.76 (foreground color: #ffffff, background color: #ef4444, font size: 13.5pt (18px), font weight: normal). Expected contrast ratio of 4.5:1"
+            }
+          ],
+          "all": [],
+          "none": [],
+          "impact": "serious",
+          "html": "<p class=\"text-lg font-medium\"><span class=\"font-bold \">Reliability &amp; Security –</span> Hardened systems with security groups, fail2ban, CloudWatch monitoring, and 3-2-1 backup strategies.</p>",
+          "target": [
+            ".bg-red-500 > .font-medium.text-lg"
+          ],
+          "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.76 (foreground color: #ffffff, background color: #ef4444, font size: 13.5pt (18px), font weight: normal). Expected contrast ratio of 4.5:1"
+        },
+        {
+          "any": [
+            {
+              "id": "color-contrast",
+              "data": {
+                "fgColor": "#ffffff",
+                "bgColor": "#ef4444",
+                "contrastRatio": 3.76,
+                "fontSize": "13.5pt (18px)",
+                "fontWeight": "bold",
+                "messageKey": null,
+                "expectedContrastRatio": "4.5:1"
+              },
+              "relatedNodes": [
+                {
+                  "html": "<div class=\"flex items-center gap-4 p-6 bg-red-500 text-white rounded-lg shadow-lg fadeIn animate\">",
+                  "target": [
+                    ".bg-red-500"
+                  ]
+                }
+              ],
+              "impact": "serious",
+              "message": "Element has insufficient color contrast of 3.76 (foreground color: #ffffff, background color: #ef4444, font size: 13.5pt (18px), font weight: bold). Expected contrast ratio of 4.5:1"
+            }
+          ],
+          "all": [],
+          "none": [],
+          "impact": "serious",
+          "html": "<span class=\"font-bold \">Reliability &amp; Security –</span>",
+          "target": [
+            ".bg-red-500 > .font-medium.text-lg > span"
+          ],
+          "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.76 (foreground color: #ffffff, background color: #ef4444, font size: 13.5pt (18px), font weight: bold). Expected contrast ratio of 4.5:1"
+        },
+        {
+          "any": [
+            {
+              "id": "color-contrast",
+              "data": {
+                "fgColor": "#ffffff",
+                "bgColor": "#f59e0b",
+                "contrastRatio": 2.14,
+                "fontSize": "13.5pt (18px)",
+                "fontWeight": "normal",
+                "messageKey": null,
+                "expectedContrastRatio": "4.5:1"
+              },
+              "relatedNodes": [
+                {
+                  "html": "<div class=\"flex items-center gap-4 p-6 bg-amber-500 text-white rounded-lg shadow-lg fadeIn animate\">",
+                  "target": [
+                    ".bg-amber-500"
+                  ]
+                }
+              ],
+              "impact": "serious",
+              "message": "Element has insufficient color contrast of 2.14 (foreground color: #ffffff, background color: #f59e0b, font size: 13.5pt (18px), font weight: normal). Expected contrast ratio of 4.5:1"
+            }
+          ],
+          "all": [],
+          "none": [],
+          "impact": "serious",
+          "html": "<p class=\"text-lg font-medium\"><span class=\"font-bold \">Technical Leadership –</span> Lead developer at InterPicker (startup) — owning the full technical build alongside a digital-marketing partner.</p>",
+          "target": [
+            ".bg-amber-500 > .font-medium.text-lg"
+          ],
+          "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.14 (foreground color: #ffffff, background color: #f59e0b, font size: 13.5pt (18px), font weight: normal). Expected contrast ratio of 4.5:1"
+        },
+        {
+          "any": [
+            {
+              "id": "color-contrast",
+              "data": {
+                "fgColor": "#ffffff",
+                "bgColor": "#f59e0b",
+                "contrastRatio": 2.14,
+                "fontSize": "13.5pt (18px)",
+                "fontWeight": "bold",
+                "messageKey": null,
+                "expectedContrastRatio": "4.5:1"
+              },
+              "relatedNodes": [
+                {
+                  "html": "<div class=\"flex items-center gap-4 p-6 bg-amber-500 text-white rounded-lg shadow-lg fadeIn animate\">",
+                  "target": [
+                    ".bg-amber-500"
+                  ]
+                }
+              ],
+              "impact": "serious",
+              "message": "Element has insufficient color contrast of 2.14 (foreground color: #ffffff, background color: #f59e0b, font size: 13.5pt (18px), font weight: bold). Expected contrast ratio of 4.5:1"
+            }
+          ],
+          "all": [],
+          "none": [],
+          "impact": "serious",
+          "html": "<span class=\"font-bold \">Technical Leadership –</span>",
+          "target": [
+            ".bg-amber-500 > .font-medium.text-lg > span"
+          ],
+          "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.14 (foreground color: #ffffff, background color: #f59e0b, font size: 13.5pt (18px), font weight: bold). Expected contrast ratio of 4.5:1"
+        }
+      ]
+    }
+  ],
+  "passedRuleIds": [
+    "aria-allowed-attr",
+    "aria-conditional-attr",
+    "aria-deprecated-role",
+    "aria-hidden-body",
+    "aria-hidden-focus",
+    "aria-prohibited-attr",
+    "aria-required-attr",
+    "aria-roles",
+    "aria-valid-attr",
+    "aria-valid-attr-value",
+    "avoid-inline-spacing",
+    "button-name",
+    "bypass",
+    "document-title",
+    "form-field-multiple-labels",
+    "html-has-lang",
+    "html-lang-valid",
+    "image-alt",
+    "label",
+    "link-in-text-block",
+    "link-name",
+    "meta-viewport",
+    "nested-interactive"
+  ],
+  "needsReviewRuleIds": []
+}

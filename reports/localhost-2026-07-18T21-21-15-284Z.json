@@ -1,0 +1,38 @@
+{
+  "url": "http://localhost:3000",
+  "timestamp": "2026-07-18T21:21:15.292Z",
+  "scannedViewports": 8,
+  "summary": {
+    "passedRules": 24,
+    "needsReview": 0,
+    "violations": 0
+  },
+  "violations": [],
+  "passedRuleIds": [
+    "aria-allowed-attr",
+    "aria-conditional-attr",
+    "aria-deprecated-role",
+    "aria-hidden-body",
+    "aria-hidden-focus",
+    "aria-prohibited-attr",
+    "aria-required-attr",
+    "aria-roles",
+    "aria-valid-attr",
+    "aria-valid-attr-value",
+    "avoid-inline-spacing",
+    "button-name",
+    "bypass",
+    "color-contrast",
+    "document-title",
+    "form-field-multiple-labels",
+    "html-has-lang",
+    "html-lang-valid",
+    "image-alt",
+    "label",
+    "link-in-text-block",
+    "link-name",
+    "meta-viewport",
+    "nested-interactive"
+  ],
+  "needsReviewRuleIds": []
+}
