@@ -1,0 +1,7 @@
+node_modules/
+reports/
+infra/
+context/
+.git/
+api/node_modules/
+worker/node_modules/

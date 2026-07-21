@@ -10,3 +10,6 @@ node_modules/
 *.tfstate.*
 .terraform/
 *.tfvars
+
+# Lambda zip packaging artifact (M2) — rebuilt by terraform apply
+infra/api.zip

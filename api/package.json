@@ -1,0 +1,12 @@
+{
+  "name": "a11y-auditor-api",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "M2 API Lambda — submit a URL to audit, check job status.",
+  "dependencies": {
+    "@aws-sdk/client-dynamodb": "^3.700.0",
+    "@aws-sdk/client-sqs": "^3.700.0",
+    "@aws-sdk/lib-dynamodb": "^3.700.0"
+  }
+}
