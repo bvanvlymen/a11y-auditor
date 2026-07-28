@@ -4,7 +4,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "audit": "node audit.js"
+    "audit": "node audit.js",
+    "verify:ai": "node --env-file=.env scripts/verify-anthropic.js"
   },
   "keywords": [],
   "author": "",
@@ -12,6 +13,7 @@
   "description": "Accessibility auditing service — crawl a URL, run axe-core WCAG checks, get a scored report. Built by a certified Web Accessibility Specialist (WAS).",
   "type": "module",
   "dependencies": {
+    "@anthropic-ai/sdk": "0.115.0",
     "@axe-core/playwright": "4.12.1",
     "playwright": "1.61.1"
   }
