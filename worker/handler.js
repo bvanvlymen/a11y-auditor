@@ -7,13 +7,44 @@ import { chromium as playwrightChromium } from 'playwright-core'
 import { DynamoDBClient } from '@aws-sdk/client-dynamodb'
 import { DynamoDBDocumentClient, UpdateCommand } from '@aws-sdk/lib-dynamodb'
 import { S3Client, PutObjectCommand } from '@aws-sdk/client-s3'
+import { SSMClient, GetParameterCommand } from '@aws-sdk/client-ssm'
+import Anthropic from '@anthropic-ai/sdk'
 import { runAudit } from './lib/scan.js'
+import { explainViolations } from './lib/explain.js'
 
 const ddb = DynamoDBDocumentClient.from(new DynamoDBClient({}))
 const s3 = new S3Client({})
+const ssm = new SSMClient({})
 
 const JOBS_TABLE = process.env.JOBS_TABLE
 const REPORTS_BUCKET = process.env.REPORTS_BUCKET
+// M3: the SSM parameter holding the Anthropic key (see infra/locals.tf).
+// Unset means the AI layer is simply off — scans still run and complete.
+const ANTHROPIC_API_KEY_PARAM = process.env.ANTHROPIC_API_KEY_PARAM
+
+// Lambda reuses warm containers, so resolve the key once per container
+// rather than once per job — a per-invoke GetParameter adds a round trip
+// to every scan and eats SSM's throughput limit for nothing. Cached as the
+// promise rather than the value so two concurrent cold invocations share
+// one call instead of racing.
+let anthropicClientPromise = null
+
+function getAnthropicClient() {
+  if (!anthropicClientPromise) {
+    anthropicClientPromise = (async () => {
+      const { Parameter } = await ssm.send(
+        new GetParameterCommand({ Name: ANTHROPIC_API_KEY_PARAM, WithDecryption: true })
+      )
+      return new Anthropic({ apiKey: Parameter.Value })
+    })().catch((err) => {
+      // Never cache a failure: a transient SSM error would otherwise
+      // disable the AI layer for the whole life of this container.
+      anthropicClientPromise = null
+      throw err
+    })
+  }
+  return anthropicClientPromise
+}
 
 async function markProcessing(jobId) {
   await ddb.send(
@@ -73,6 +104,24 @@ export const handler = async (event) => {
         report = await runAudit(browser, url)
       } finally {
         await browser.close()
+      }
+
+      // The scan is the product; the prose is an enhancement. This gets its
+      // own try/catch on purpose — the browser run above is the expensive
+      // part, and a rate limit or an exhausted balance must not throw it
+      // away and send the job round the SQS retry loop to be re-scanned.
+      if (ANTHROPIC_API_KEY_PARAM && report.violations.length > 0) {
+        try {
+          const client = await getAnthropicClient()
+          const { explanations, usage } = await explainViolations(report.violations, { client })
+          report.explanations = explanations
+          console.log(
+            `explained ${Object.keys(explanations).length} violation(s) for ${jobId} — ` +
+              `${usage.input_tokens} in / ${usage.output_tokens} out tokens`
+          )
+        } catch (err) {
+          console.error(`explain step failed for ${jobId} (report saved without it): ${err.message}`)
+        }
       }
 
       const reportKey = `reports/${jobId}.json`

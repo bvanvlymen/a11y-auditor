@@ -71,6 +71,36 @@ data "aws_iam_policy_document" "worker" {
     actions   = ["s3:PutObject"]
     resources = ["${aws_s3_bucket.reports.arn}/reports/*"]
   }
+
+  # M3: read the Anthropic API key at cold start. Scoped to this one
+  # parameter — not the /a11y-auditor/* prefix — so adding an unrelated
+  # secret under the same path later doesn't silently widen the worker's
+  # reach.
+  statement {
+    actions   = ["ssm:GetParameter"]
+    resources = ["arn:aws:ssm:${var.aws_region}:${data.aws_caller_identity.current.account_id}:parameter${local.anthropic_param_name}"]
+  }
+
+  # A SecureString is useless without the key that encrypts it, so
+  # ssm:GetParameter alone would fail with AccessDenied on decrypt. The
+  # ViaService condition means this grant only works for calls arriving
+  # through SSM — it can't be used to decrypt anything else in the account.
+  statement {
+    actions   = ["kms:Decrypt"]
+    resources = [data.aws_kms_key.ssm.arn]
+
+    condition {
+      test     = "StringEquals"
+      variable = "kms:ViaService"
+      values   = ["ssm.${var.aws_region}.amazonaws.com"]
+    }
+  }
+}
+
+# The AWS-managed key that encrypts SecureString parameters by default.
+# Looked up rather than hardcoded: its id differs per account and region.
+data "aws_kms_key" "ssm" {
+  key_id = "alias/aws/ssm"
 }
 
 resource "aws_iam_role_policy" "worker" {

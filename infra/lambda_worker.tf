@@ -26,6 +26,12 @@ resource "aws_lambda_function" "worker" {
     variables = {
       JOBS_TABLE     = aws_dynamodb_table.jobs.name
       REPORTS_BUCKET = aws_s3_bucket.reports.bucket
+
+      # The parameter NAME, never the key itself. Lambda environment
+      # variables are visible to anyone with lambda:GetFunction and are
+      # echoed in the console, so the secret stays in SSM and the worker
+      # fetches it at cold start using the IAM grant in iam.tf.
+      ANTHROPIC_API_KEY_PARAM = local.anthropic_param_name
     }
   }
 
