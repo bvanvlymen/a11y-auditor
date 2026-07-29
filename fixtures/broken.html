@@ -1,0 +1,57 @@
+<!doctype html>
+<!-- Deliberately inaccessible fixture for exercising the M3 explain layer.
+     Your own site passes, which is great for you and useless for testing —
+     this page fails a spread of WCAG A/AA rules on purpose so the AI layer
+     has something to describe. Every violation below is intentional.
+     Do not "fix" this file. -->
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <style>
+      body { font-family: system-ui, sans-serif; padding: 2rem; }
+      /* color-contrast: ~1.9:1, well under the 4.5:1 AA threshold */
+      .faint { color: #b0b0b0; background: #ffffff; }
+      .banner { color: #8fd4ff; background: #ffffff; padding: 1rem; }
+    </style>
+  </head>
+  <body>
+    <!-- html-has-lang: no lang attribute on <html> above -->
+    <!-- document-title: no <title> element in <head> above -->
+
+    <h1>Product signup</h1>
+
+    <p class="faint">Read our terms before continuing.</p>
+    <p class="banner">Limited time offer — half price this week.</p>
+
+    <!-- image-alt: no alt attribute -->
+    <img
+      src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+      width="120"
+      height="60"
+    />
+
+    <!-- label: input with no associated label -->
+    <p>
+      Email:
+      <input type="email" name="email" />
+    </p>
+
+    <!-- select-name: select with no accessible name -->
+    <p>
+      <select name="plan">
+        <option>Free</option>
+        <option>Pro</option>
+      </select>
+    </p>
+
+    <!-- button-name: button with no discernible text -->
+    <button type="submit"><span aria-hidden="true">→</span></button>
+
+    <!-- link-name: anchor with no discernible text -->
+    <p><a href="/pricing"></a></p>
+
+    <!-- heading-order: h4 follows h1 with no h2/h3 between -->
+    <h4>Fine print</h4>
+    <p class="faint">All sales final.</p>
+  </body>
+</html>

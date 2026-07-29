@@ -4,7 +4,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "audit": "node audit.js",
+    "audit": "node --env-file-if-exists=.env audit.js",
     "verify:ai": "node --env-file=.env scripts/verify-anthropic.js"
   },
   "keywords": [],

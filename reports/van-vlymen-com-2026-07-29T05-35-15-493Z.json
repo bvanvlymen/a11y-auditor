@@ -1,9 +1,9 @@
 {
-  "url": "http://localhost:3000",
-  "timestamp": "2026-07-18T21:21:15.292Z",
+  "url": "https://van-vlymen.com",
+  "timestamp": "2026-07-29T05:35:15.484Z",
   "scannedViewports": 8,
   "summary": {
-    "passedRules": 24,
+    "passedRules": 23,
     "needsReview": 0,
     "violations": 0
   },
@@ -13,7 +13,6 @@
     "aria-conditional-attr",
     "aria-deprecated-role",
     "aria-hidden-body",
-    "aria-hidden-focus",
     "aria-prohibited-attr",
     "aria-required-attr",
     "aria-roles",

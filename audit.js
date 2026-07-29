@@ -41,7 +41,11 @@ try {
     }
   }
 
-  const host = new URL(url).hostname.replace(/\./g, '-')
+  // file:// URLs (the fixtures/ pages) have no hostname — fall back to the
+  // filename so local test runs still get a readable report name.
+  const parsed = new URL(url)
+  const label = parsed.hostname || parsed.pathname.split('/').pop() || 'local'
+  const host = label.replace(/\.html?$/, '').replace(/\./g, '-')
   const stamp = new Date().toISOString().replace(/[:.]/g, '-')
   const outFile = `reports/${host}-${stamp}.json`
   fs.mkdirSync('reports', { recursive: true })
