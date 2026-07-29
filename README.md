@@ -2,9 +2,9 @@
 
 Paste a URL, get a scored WCAG accessibility report with plain-English fix explanations — built by a certified **Web Accessibility Specialist (WAS)**.
 
-> 🚧 Work in progress. Currently at **M2: async pipeline**.
+> 🚧 Work in progress. Currently at **M3: AI layer**.
 
-## Current status — M2
+## Current status — M3
 
 Local CLI (still the fastest way to test a scan):
 
@@ -15,6 +15,21 @@ npm run audit -- https://example.com
 ```
 
 Console output shows violations ranked critical → minor; the full JSON report lands in `reports/`.
+
+**Plain-English explanations** — add `--explain` to have Claude describe each violation for the person who owns the site rather than the developer who'll fix it: what's wrong, who it affects, and what to change.
+
+```bash
+echo 'ANTHROPIC_API_KEY=sk-ant-...' >> .env   # gitignored
+npm run audit -- https://example.com --explain
+```
+
+Opt-in, because scanning is free and explaining costs API credit. Roughly 1–2 cents for a page with violations; clean pages cost nothing. `fixtures/broken.html` fails 8 WCAG rules on purpose if you want something to point it at:
+
+```bash
+npm run audit -- "file://$PWD/fixtures/broken.html" --explain
+```
+
+In the deployed pipeline the key lives in SSM Parameter Store as a SecureString — never in Terraform state, and never in a Lambda environment variable. See `context/m3summarize.md`.
 
 **Async pipeline** — the same scan logic (`lib/scan.js`), now running on AWS: submit a URL over HTTP, get a `jobId` back immediately, a queued Lambda worker runs the scan, results land in DynamoDB + S3.
 
@@ -36,7 +51,7 @@ Architecture: `api` Lambda (public Function URL) → SQS → `worker` Lambda (co
 | M0 | Local audit script (Playwright + axe-core) | ✅ |
 | M1 | Terraform foundations — S3, remote state, AWS budget alarm | ✅ |
 | M2 | Async pipeline — Lambda + SQS + DynamoDB + S3 | ✅ |
-| M3 | AI layer — Claude API explains violations in plain English | ⬜ |
+| M3 | AI layer — Claude API explains violations in plain English | ✅ |
 | M4 | Next.js frontend + SES email reports | ⬜ |
 | M5 | CI/CD via GitHub Actions (OIDC) + portfolio case study | ⬜ |
 
