@@ -35,7 +35,29 @@ function getAnthropicClient() {
       const { Parameter } = await ssm.send(
         new GetParameterCommand({ Name: ANTHROPIC_API_KEY_PARAM, WithDecryption: true })
       )
-      return new Anthropic({ apiKey: Parameter.Value })
+      const apiKey = Parameter.Value.trim()
+
+      // A key carrying anything outside printable ASCII — an ANSI escape
+      // picked up from a colourised terminal, a stray newline — is rejected
+      // by undici when it builds the x-api-key header, three layers below
+      // this, and surfaces as a bare "Connection error." with no socket ever
+      // opened. Fail here instead, where the message can name the real
+      // problem. Throwing inside this promise also clears the cache below,
+      // so repairing the parameter takes effect on the next invocation
+      // rather than waiting for the container to cycle.
+      const badIndex = [...apiKey].findIndex((ch) => {
+        const c = ch.charCodeAt(0)
+        return c < 0x21 || c > 0x7e
+      })
+      if (badIndex !== -1) {
+        throw new Error(
+          `${ANTHROPIC_API_KEY_PARAM} holds a character that is illegal in an HTTP header ` +
+            `at index ${badIndex} (char code ${apiKey.charCodeAt(badIndex)}) — ` +
+            `check for ANSI escape codes or newlines captured when the value was stored`
+        )
+      }
+
+      return new Anthropic({ apiKey })
     })().catch((err) => {
       // Never cache a failure: a transient SSM error would otherwise
       // disable the AI layer for the whole life of this container.
@@ -120,7 +142,16 @@ export const handler = async (event) => {
               `${usage.input_tokens} in / ${usage.output_tokens} out tokens`
           )
         } catch (err) {
-          console.error(`explain step failed for ${jobId} (report saved without it): ${err.message}`)
+          // APIConnectionError's message is the useless constant string
+          // "Connection error." — the actual failure (ENOTFOUND, ECONNREFUSED,
+          // a TLS error, an abort) is only ever on err.cause. Log the chain,
+          // or a network problem is indistinguishable from any other.
+          const parts = [`${err.name}: ${err.message}`]
+          if (err.status) parts.push(`status=${err.status}`)
+          for (let c = err.cause, depth = 0; c && depth < 3; c = c.cause, depth++) {
+            parts.push(`cause[${depth}]=${c.code ?? c.name ?? ''} ${c.message ?? c}`)
+          }
+          console.error(`explain step failed for ${jobId} (report saved without it): ${parts.join(' | ')}`)
         }
       }
 
