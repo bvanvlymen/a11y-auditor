@@ -4,7 +4,7 @@
 
 ## What M0 was
 
-The first milestone of the **a11y-auditor** flagship project (repo: [github.com/arduino731/a11y-auditor](https://github.com/arduino731/a11y-auditor), local: `~/Github/a11y-auditor`): a local Node script that loads any URL in headless Chromium (Playwright), runs axe-core WCAG 2.1 A/AA checks, and prints a severity-ranked report (critical → minor) to the console plus a full JSON report in `reports/`.
+The first milestone of the **a11y-auditor** flagship project (repo: [github.com/bvanvlymen/a11y-auditor](https://github.com/bvanvlymen/a11y-auditor), local: `~/Github/a11y-auditor`): a local Node script that loads any URL in headless Chromium (Playwright), runs axe-core WCAG 2.1 A/AA checks, and prints a severity-ranked report (critical → minor) to the console plus a full JSON report in `reports/`.
 
 ## What was built
 
